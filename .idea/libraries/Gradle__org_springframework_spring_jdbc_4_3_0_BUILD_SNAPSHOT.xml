@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: org.springframework:spring-jdbc:4.3.0.BUILD-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.0.BUILD-SNAPSHOT/ce98935d740848d0dc75fa23b6ef7b705d3060db/spring-jdbc-4.3.0.BUILD-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.0.BUILD-SNAPSHOT/9bc330797abc445e84879c00bcc5f0a00ddc18c0/spring-jdbc-4.3.0.BUILD-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.0.BUILD-SNAPSHOT/9dc04649170e3d94ecf4978916deb59c9aea6832/spring-jdbc-4.3.0.BUILD-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.0.BUILD-SNAPSHOT/aa975787e937126cb2fc30e3b4ac041454a19bf3/spring-jdbc-4.3.0.BUILD-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

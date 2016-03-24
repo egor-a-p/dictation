@@ -2,8 +2,6 @@ package info.egor_a_petrov.service;
 
 import info.egor_a_petrov.domain.entities.Story;
 
-import java.util.List;
-
 public interface StoryService {
 
     void saveStory(Story story);
@@ -12,8 +10,10 @@ public interface StoryService {
 
     Story findStory(Integer id);
 
-    List<Story> findAllStoriesByAuthor(String author);
+    Iterable<Story> findAllStoriesByAuthor(String author);
 
-    List<Story> findAllStories();
+    Iterable<Story> findAllStories();
+
+    Iterable<String> getAuthors();
 
 }

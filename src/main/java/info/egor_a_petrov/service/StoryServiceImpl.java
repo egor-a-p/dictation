@@ -6,8 +6,8 @@ import info.egor_a_petrov.domain.repositories.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class StoryServiceImpl implements StoryService {
@@ -35,14 +35,19 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
-    public List<Story> findAllStoriesByAuthor(String author) {
+    public Iterable<Story> findAllStoriesByAuthor(String author) {
         return storyRepository.findByAuthorOrderByNameAsc(author);
     }
 
     @Override
-    public List<Story> findAllStories() {
-        List<Story> result = new ArrayList<>();
-        storyRepository.findAll().forEach(result::add);
-        return result;
+    public Iterable<Story> findAllStories() {
+        return storyRepository.findAll();
+    }
+
+    @Override
+    public Iterable<String> getAuthors() {
+        Set<String> authors = new HashSet<>();
+        storyRepository.findAll().forEach(story -> authors.add(story.getAuthor()));
+        return authors;
     }
 }

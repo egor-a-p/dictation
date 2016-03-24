@@ -53,12 +53,24 @@ public class DictationApplicationTests {
         //setup story
         Story story = new Story();
         try {
-            story.setName("Скворцы");
-            story.setAuthor("А. И. Куприн");
+            story.setName("Мышонок Пик");
+            story.setAuthor("В. В. Бианки");
             story.setContent(new String(Files.readAllBytes(Paths.get("src/test/resources/7colors/content.txt")), Charset.forName("UTF-8")));
-            story.setImage(Files.readAllBytes(Paths.get("src/test/resources/7colors/skv.png")));
+            story.setImage(Files.readAllBytes(Paths.get("src/test/resources/7colors/pik.png")));
             story.setAudio(yandexSpeechClient.getAudio(story.getContent()));
             Files.write(Paths.get("src/test/resources/test.mp3"), story.getAudio());
+            storyRepository.save(story);
+
+            //fetch from DB
+            Story fetchedStory = storyRepository.findOne(story.getId());
+
+            //should equal
+            assertEquals(story.getId(), story.getId());
+            assertEquals(story.getName(), story.getName());
+            assertEquals(story.getAuthor(), story.getAuthor());
+            assertEquals(story.getContent(), story.getContent());
+            assertArrayEquals(story.getImage(), story.getImage());
+            assertArrayEquals(story.getAudio(), story.getAudio());
         } catch (IOException e) {
         }
     }

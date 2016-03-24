@@ -28,6 +28,10 @@ a.logo:link, a.logo:visited, a.logo:hover, a.logo:active{
     line-height: 40px;
 }
 
+.audio{
+    width: 242px;
+}
+
 /* Custom page footer */
 .footer {
     padding-top: 19px;
