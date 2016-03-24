@@ -39,17 +39,21 @@
         </h3>
     </div> <!-- /header -->
 
-    <div class="stories">
-        <h3 class="media-heading" th:text="${story.name}">Story Name</h3>
-        <h4 class="media-heading" th:text="${story.author}">Author</h4>
-        <div class="media-left">
-            <img th:src="${'/image/' + story.id}" class="img-rounded"/>
-            <audio class="audio" controls="controls" >
-                <source th:src="${'/audio/' + story.id}" type="audio/mp3"/>
-            </audio>
-        </div>
-        <div class="media-body">
-            <p th:text="${story.content}">Story content</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="thumbnail">
+                <img th:src="${'/image/' + story.id}" class="img-rounded"/>
+                <div style="text-align: center;">
+                    <audio class="audio" controls="controls">
+                        <source th:src="${'/audio/' + story.id}" type="audio/mp3"/>
+                    </audio>
+                </div>
+                <div class="caption">
+                    <h3 class="media-heading" th:text="${story.name}">Story Name</h3>
+                    <h4 class="media-heading" th:text="${story.author}">Author</h4>
+                    <p th:text="${story.content}">Story content</p>
+                </div>
+            </div>
         </div>
     </div>
 

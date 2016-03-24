@@ -1,17 +1,21 @@
 package info.egor_a_petrov.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String role;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     Set<User> users;
 
@@ -40,5 +44,10 @@ public class Role {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String getAuthority() {
+        return getRole();
     }
 }

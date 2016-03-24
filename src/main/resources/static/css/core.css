@@ -29,7 +29,7 @@ a.logo:link, a.logo:visited, a.logo:hover, a.logo:active{
 }
 
 .audio{
-    width: 242px;
+    align-content: center;
 }
 
 /* Custom page footer */
