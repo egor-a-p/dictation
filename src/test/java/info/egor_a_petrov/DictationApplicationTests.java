@@ -53,10 +53,10 @@ public class DictationApplicationTests {
         //setup story
         Story story = new Story();
         try {
-            story.setName("Мышонок Пик");
-            story.setAuthor("В. В. Бианки");
+            story.setName("Два брата");
+            story.setAuthor("Е. Л. Шварц");
             story.setContent(new String(Files.readAllBytes(Paths.get("src/test/resources/7colors/content.txt")), Charset.forName("UTF-8")));
-            story.setImage(Files.readAllBytes(Paths.get("src/test/resources/7colors/pik.png")));
+            story.setImage(Files.readAllBytes(Paths.get("src/test/resources/7colors/2b.png")));
             story.setAudio(yandexSpeechClient.getAudio(story.getContent()));
             Files.write(Paths.get("src/test/resources/test.mp3"), story.getAudio());
             storyRepository.save(story);

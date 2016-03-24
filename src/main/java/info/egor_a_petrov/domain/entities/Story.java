@@ -1,9 +1,10 @@
 package info.egor_a_petrov.domain.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name="stories")
+@Table(name = "stories")
 public class Story {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +22,18 @@ public class Story {
     @Column(columnDefinition = "mediumblob")
     private byte[] audio;
 
-    public Story(){
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "stories")
+    private Set<User> users;
+
+    public Story() {
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     public Integer getId() {
