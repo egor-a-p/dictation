@@ -1,7 +1,5 @@
 package info.egor_a_petrov.domain.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -24,7 +22,6 @@ public class Story {
     @Column(columnDefinition = "mediumblob")
     private byte[] audio;
 
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "stories")
     private Set<User> users;
 

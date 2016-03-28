@@ -52,46 +52,27 @@
         </h4>
     </div> <!-- /header -->
 
-    <div class="row stories" th:if="${not #lists.isEmpty(stories)}">
 
-        <div class="col-md-12">
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="true">
-                    Автор
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="/">Все авторы</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li th:each="author : ${authors}"><a th:href="${'/filter/' + author}" th:text="${author}">Author</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="thumbnail" style="text-align: center">
+        <div th:if="${param.error}">
+            Invalid username and password.
         </div>
-
-        <!-- story item -->
-        <div class="col-sm-6 col-md-4" th:each="story : ${stories}">
-            <div class="thumbnail">
-                <a th:href="${'/story/' + story.id}">
-                    <img th:src="${'/image/' + story.id}" class="img-rounded"/>
-                </a>
-                <div class="media">
-                    <div class="media-body">
-                        <h4 class="media-heading" th:text="${story.author}">Author</h4>
-                        <p th:text="${story.name}">Story Name</p>
-                    </div>
-                    <div class="media-right">
-                        <a th:href="${'/story/' + story.id}" class="btn btn-success" role="button">
-                            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
         </div>
-        <!-- /story item -->
+        <form class="form-inline" th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label class="sr-only" for="inputUsername">Username</label>
+                <input type="text" name="username" class="form-control" id="inputUsername" placeholder="username"/>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="inputPassword">Password</label>
+                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="password"/>
+            </div>
+            <button type="submit" class="btn btn-success">Войти</button>
+        </form>
+    </div>
 
-    </div> <!-- /stories -->
 
     <footer class="footer">
         <p>© 2016 Garage Cooperative, Inc.</p>

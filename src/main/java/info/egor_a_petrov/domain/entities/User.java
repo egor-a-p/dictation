@@ -17,7 +17,7 @@ public class User {
     @JoinTable(name="users_stories",
             joinColumns = @JoinColumn(name="user_id", referencedColumnName="id"),
             inverseJoinColumns = @JoinColumn(name="story_id", referencedColumnName="id"))
-    private Set<Story> favorites;
+    private Set<Story> stories;
 
     @ManyToMany
     @JoinTable(name = "users_roles",
@@ -52,12 +52,12 @@ public class User {
         this.password = password;
     }
 
-    public Set<Story> getFavorites() {
-        return favorites;
+    public Set<Story> getStories() {
+        return stories;
     }
 
-    public void setFavorites(Set<Story> favorites) {
-        this.favorites = favorites;
+    public void setStories(Set<Story> stories) {
+        this.stories = stories;
     }
 
     public Set<Role> getRoles() {

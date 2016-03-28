@@ -24,10 +24,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserDetails loadedUser;
 
         try {
-            User client = userRepository.findByUsername(username);
+            User user = userRepository.findByUsername(username);
             loadedUser = new org.springframework.security.core.userdetails.User(
-                    client.getUsername(), client.getPassword(),
-                    client.getRoles());
+                    user.getUsername(), user.getPassword(),
+                    user.getRoles());
         } catch (Exception repositoryProblem) {
             throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
         }
