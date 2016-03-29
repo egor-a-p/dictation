@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
-@Service
+@Service("storyService")
 public class StoryServiceImpl implements StoryService {
 
     private StoryRepository storyRepository;

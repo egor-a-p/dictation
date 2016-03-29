@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class DictationController {
     private StoryService storyService;
@@ -24,62 +22,32 @@ public class DictationController {
     }
 
     @RequestMapping(value = {"/", "/index"})
-    public String index(HttpServletRequest request, Model model) {
+    public String index(Model model) {
         model.addAttribute("authors", storyService.getAuthors());
         model.addAttribute("stories", storyService.findAllStories());
-        boolean isAuthorized = request.getUserPrincipal() != null;
-        String username = "";
-        model.addAttribute("isAuthorized", isAuthorized);
-        if (isAuthorized)
-            username = request.getUserPrincipal().getName();
-        model.addAttribute("username", username);
         return "index";
     }
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request, Model model) {
-        boolean isAuthorized = request.getUserPrincipal() != null;
-        String username = "";
-        model.addAttribute("isAuthorized", isAuthorized);
-        if (isAuthorized)
-            username = request.getUserPrincipal().getName();
-        model.addAttribute("username", username);
+    public String login(Model model) {
         return "login";
     }
 
     @RequestMapping("/about")
-    public String about(HttpServletRequest request, Model model) {
-        boolean isAuthorized = request.getUserPrincipal() != null;
-        String username = "";
-        model.addAttribute("isAuthorized", isAuthorized);
-        if (isAuthorized)
-            username = request.getUserPrincipal().getName();
-        model.addAttribute("username", username);
+    public String about(Model model) {
         return "about";
     }
 
     @RequestMapping("/filter/{author:.+}")
-    public String filter(@PathVariable(value = "author") final String author, Model model, HttpServletRequest request) {
+    public String filter(@PathVariable(value = "author") final String author, Model model) {
         model.addAttribute("authors", storyService.getAuthors());
         model.addAttribute("stories", storyService.findAllStoriesByAuthor(author));
-        boolean isAuthorized = request.getUserPrincipal() != null;
-        String username = "";
-        model.addAttribute("isAuthorized", isAuthorized);
-        if (isAuthorized)
-            username = request.getUserPrincipal().getName();
-        model.addAttribute("username", username);
         return "index";
     }
 
     @RequestMapping("/story/{id}")
-    public String dictation(@PathVariable("id") final Integer id, Model model, HttpServletRequest request) {
+    public String dictation(@PathVariable("id") final Integer id, Model model) {
         model.addAttribute("story", storyService.findStory(id));
-        boolean isAuthorized = request.getUserPrincipal() != null;
-        String username = "";
-        model.addAttribute("isAuthorized", isAuthorized);
-        if (isAuthorized)
-            username = request.getUserPrincipal().getName();
-        model.addAttribute("username", username);
         return "story";
     }
 
