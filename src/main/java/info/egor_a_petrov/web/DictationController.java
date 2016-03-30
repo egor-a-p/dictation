@@ -51,6 +51,12 @@ public class DictationController {
         return "story";
     }
 
+    @RequestMapping(value = {"/admin"})
+    public String admin(Model model) {
+        model.addAttribute("stories", storyService.findAllStories());
+        return "admin";
+    }
+
     @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
     public HttpEntity<byte[]> getImage(@PathVariable("id") final Integer id) {
         byte[] bytes = storyService.findStory(id).getImage();

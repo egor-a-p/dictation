@@ -44,7 +44,7 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li sec:authorize-url="/admin"><a href="/">Управление</a></li>
+                    <li sec:authorize-url="/admin"><a th:href="@{/admin}">Управление</a></li>
                     <li sec:authorize-url="/user"><a href="/">Закладки</a></li>
                     <li><a th:href="@{/logout}">Выйти</a></li>
                 </ul>
