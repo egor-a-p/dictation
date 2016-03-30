@@ -43,13 +43,12 @@
                     <span sec:authentication="name"></span>
                     <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li sec:authorize="hasRole('ADMIN')"><a href="">Управление</a></li>
-                    <li sec:authorize="hasRole('USER')"><a href="">Закладки</a></li>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li sec:authorize-url="/admin"><a href="/">Управление</a></li>
+                    <li sec:authorize-url="/user"><a href="/">Закладки</a></li>
                     <li><a th:href="@{/logout}">Выйти</a></li>
                 </ul>
             </li>
-
         </ul>
     </nav>
     <h4 class="text-muted">
