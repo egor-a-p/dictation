@@ -3,6 +3,7 @@ package info.egor_a_petrov.service;
 import info.egor_a_petrov.domain.entities.User;
 import info.egor_a_petrov.domain.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
+    public void setUserRepository(@Qualifier("userRepository") UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

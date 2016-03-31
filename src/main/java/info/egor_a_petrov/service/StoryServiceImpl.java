@@ -4,6 +4,7 @@ package info.egor_a_petrov.service;
 import info.egor_a_petrov.domain.entities.Story;
 import info.egor_a_petrov.domain.repositories.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -15,7 +16,7 @@ public class StoryServiceImpl implements StoryService {
     private StoryRepository storyRepository;
 
     @Autowired
-    public void setStoryRepository(StoryRepository storyRepository) {
+    public void setStoryRepository(@Qualifier("storyRepository") StoryRepository storyRepository) {
         this.storyRepository = storyRepository;
     }
 

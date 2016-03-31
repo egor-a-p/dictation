@@ -1,5 +1,7 @@
 package info.egor_a_petrov.web;
 
+import info.egor_a_petrov.api.YandexSpeechClient;
+import info.egor_a_petrov.domain.entities.Story;
 import info.egor_a_petrov.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -10,11 +12,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 public class DictationController {
     private StoryService storyService;
+    private YandexSpeechClient yandexSpeechClient;
 
+    @Autowired
+    public void setYandexSpeechClient(YandexSpeechClient yandexSpeechClient) {
+        this.yandexSpeechClient = yandexSpeechClient;
+    }
 
     @Autowired
     public void setStoryService(StoryService storyService) {
@@ -57,6 +68,25 @@ public class DictationController {
         return "admin";
     }
 
+    @RequestMapping("/admin/edit/{id}")
+    public String editStory(@PathVariable("id") final Integer id, Model model) {
+        model.addAttribute("story", storyService.findStory(id));
+        return "storyform";
+    }
+
+    @RequestMapping("/admin/delete/{id}")
+    public String deleteStory(@PathVariable("id") final Integer id, Model model) {
+        storyService.deleteStory(id);
+        model.addAttribute("stories", storyService.findAllStories());
+        return "admin";
+    }
+
+    @RequestMapping("/admin/new/story")
+    public String newStory(Model model) {
+        model.addAttribute("story", new Story());
+        return "storyform";
+    }
+
     @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
     public HttpEntity<byte[]> getImage(@PathVariable("id") final Integer id) {
         byte[] bytes = storyService.findStory(id).getImage();
@@ -72,4 +102,45 @@ public class DictationController {
         headers.setContentType(new MediaType("audio", "mpeg"));
         return new HttpEntity<>(bytes, headers);
     }
+
+    @RequestMapping(value = "/admin/save/story", method = RequestMethod.POST)
+    public String saveStory(Story story, @RequestParam("file") MultipartFile file, Model model) {
+        if (story.getName() == null || story.getName().equals("")){
+            model.addAttribute("message", "Введите название.");
+            model.addAttribute("story", story);
+            return "storyform";
+        }
+
+        if (story.getAuthor() == null || story.getAuthor().equals("")){
+            model.addAttribute("message", "Введите автора.");
+            model.addAttribute("story", story);
+            return "storyform";
+        }
+
+        if (story.getContent() == null || story.getContent().equals("")){
+            model.addAttribute("message", "Введите текст.");
+            model.addAttribute("story", story);
+            return "storyform";
+        }
+
+        if (story.getId() == null && file.isEmpty()){
+            model.addAttribute("message", "Выбирите изображение.");
+            model.addAttribute("story", story);
+            return "storyform";
+        }
+
+        try {
+            if (!file.isEmpty())
+                story.setImage(file.getBytes());
+
+            if (story.getId() == null || !story.getContent().equals(storyService.findStory(story.getId()).getContent()))
+                story.setAudio(yandexSpeechClient.getAudio(story.getContent()));
+
+            storyService.saveStory(story);
+        } catch (IOException e) {
+        }
+
+        return "redirect:/admin";
+    }
+
 }

@@ -34,7 +34,37 @@ public class DictationApplicationTests {
     public void testAudioRequest() {
         byte[] audio = yandexSpeechClient.getAudio("Штырлиц ещё никогда не был так близок к провалу.");
         assertNotNull(audio);
+    }
 
+    @Test
+    public void testUpdateStory(){
+        //setup story
+        Story story = new Story();
+        story.setName("TestName");
+        story.setAuthor("TestAuthor");
+        story.setContent("TestContent");
+        story.setImage("TestImage".getBytes());
+        story.setAudio("TestAudio".getBytes());
+
+        //save story, verify has ID value after save
+        assertNull(story.getId()); //null before save
+        storyRepository.save(story);
+        assertNotNull(story.getId());
+
+        //update content
+        story.setContent("UpdatedTestContent");
+
+        //save story
+        storyRepository.save(story);
+
+        //fetch from DB
+        Story fetchedStory = storyRepository.findOne(story.getId());
+
+        //should equal
+        assertEquals(story.getContent(), fetchedStory.getContent());
+
+        //delete story
+        storyRepository.delete(story.getId());
     }
 
     @Test
@@ -61,12 +91,12 @@ public class DictationApplicationTests {
         assertNotNull(fetchedStory);
 
         //should equal
-        assertEquals(story.getId(), story.getId());
-        assertEquals(story.getName(), story.getName());
-        assertEquals(story.getAuthor(), story.getAuthor());
-        assertEquals(story.getContent(), story.getContent());
-        assertArrayEquals(story.getImage(), story.getImage());
-        assertArrayEquals(story.getAudio(), story.getAudio());
+        assertEquals(story.getId(), fetchedStory.getId());
+        assertEquals(story.getName(), fetchedStory.getName());
+        assertEquals(story.getAuthor(), fetchedStory.getAuthor());
+        assertEquals(story.getContent(), fetchedStory.getContent());
+        assertArrayEquals(story.getImage(), fetchedStory.getImage());
+        assertArrayEquals(story.getAudio(), fetchedStory.getAudio());
 
         //verify count of products in DB
         assertEquals(storyCount + 1, storyRepository.count());
