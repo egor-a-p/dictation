@@ -1,8 +1,8 @@
-package info.egor_a_petrov.service;
+package online.diktant.service;
 
 
-import info.egor_a_petrov.domain.entities.Story;
-import info.egor_a_petrov.domain.repositories.StoryRepository;
+import online.diktant.domain.Story;
+import online.diktant.repository.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

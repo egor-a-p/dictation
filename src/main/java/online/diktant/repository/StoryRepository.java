@@ -1,6 +1,6 @@
-package info.egor_a_petrov.domain.repositories;
+package online.diktant.repository;
 
-import info.egor_a_petrov.domain.entities.Story;
+import online.diktant.domain.Story;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

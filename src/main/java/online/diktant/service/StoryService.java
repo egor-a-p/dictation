@@ -1,6 +1,6 @@
-package info.egor_a_petrov.service;
+package online.diktant.service;
 
-import info.egor_a_petrov.domain.entities.Story;
+import online.diktant.domain.Story;
 
 public interface StoryService {
 

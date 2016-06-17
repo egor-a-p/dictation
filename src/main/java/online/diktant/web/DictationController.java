@@ -1,8 +1,8 @@
-package info.egor_a_petrov.web;
+package online.diktant.web;
 
-import info.egor_a_petrov.api.YandexSpeechClient;
-import info.egor_a_petrov.domain.entities.Story;
-import info.egor_a_petrov.service.StoryService;
+import online.diktant.domain.Story;
+import online.diktant.service.YandexSpeechClient;
+import online.diktant.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

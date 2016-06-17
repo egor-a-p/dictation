@@ -1,4 +1,4 @@
-package info.egor_a_petrov;
+package online.diktant;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package info.egor_a_petrov.domain.entities;
+package online.diktant.domain;
 
 import javax.persistence.*;
 import java.util.Set;

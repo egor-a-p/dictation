@@ -1,7 +1,7 @@
-package info.egor_a_petrov.service;
+package online.diktant.service;
 
-import info.egor_a_petrov.domain.entities.User;
-import info.egor_a_petrov.domain.repositories.UserRepository;
+import online.diktant.domain.User;
+import online.diktant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;

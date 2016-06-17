@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/dictation.iml" filepath="$PROJECT_DIR$/dictation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dictation.iml" filepath="$PROJECT_DIR$/.idea/modules/dictation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dictation_main.iml" filepath="$PROJECT_DIR$/.idea/modules/dictation_main.iml" group="dictation" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dictation_test.iml" filepath="$PROJECT_DIR$/.idea/modules/dictation_test.iml" group="dictation" />
     </modules>
   </component>
 </project>

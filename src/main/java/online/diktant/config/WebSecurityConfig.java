@@ -1,5 +1,6 @@
-package info.egor_a_petrov.config;
+package online.diktant.config;
 
+import org.hibernate.cfg.annotations.reflection.XMLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
